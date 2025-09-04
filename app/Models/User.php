@@ -51,4 +51,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function getFullNameAttribute(): string
+    {
+        return Str::title("{$this->first_name} {$this->last_name}");
+    }
+
+    public function schedules()
+    {
+        return $this->hasMany(EmployeeManagement\Schedule::class);
+    }
 }
